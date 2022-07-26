@@ -14,12 +14,10 @@
         <servlet-name>app</servlet-name>
         <url-pattern>/secret</url-pattern>
     </servlet-mapping>
-
     <login-config>
         <auth-method>BASIC</auth-method>
         <realm-name>JaasLogin</realm-name>
     </login-config>
-
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Secret Page</web-resource-name>
