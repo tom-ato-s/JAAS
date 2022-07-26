@@ -3,18 +3,24 @@
  */
 package JAAS;
 
-import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpMethodConstraint;
+import javax.servlet.annotation.ServletSecurity;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // делаем класс сервлетом - extends HttpServlet
+@WebServlet(name="app", urlPatterns = "/secret")
+@ServletSecurity(httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "admin")
+})
 public class App extends HttpServlet {
     public String getGreeting() {
         return "Hello World! Secret!";
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().print(getGreeting());
     }
 
